@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishi's Momos - Delicious Food Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #e63946;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+        }
+        
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e63946;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #d62828;
+            transform: translateY(-3px);
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #e63946;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .menu-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .menu-img img {
+            transform: scale(1.1);
+        }
+        
+        .menu-content {
+            padding: 20px;
+        }
+        
+        .menu-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .menu-content .price {
+            font-weight: 700;
+            color: #e63946;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .menu-content .type {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .veg {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .non-veg {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* Combo Section */
+        .combo {
+            background-color: #f1faee;
+            padding: 60px 0;
+        }
+        
+        .combo-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .combo-img {
+            flex: 1;
+        }
+        
+        .combo-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .combo-content {
+            flex: 1;
+        }
+        
+        .combo-content h2 {
+            font-size: 2.2rem;
+            color: #e63946;
+            margin-bottom: 20px;
+        }
+        
+        .combo-content p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+        
+        .combo-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #e63946;
+            margin-bottom: 30px;
+        }
+        
+        /* Recommended Section */
+        .recommended {
+            padding: 80px 0;
+        }
+        
+        .recommended-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .recommended-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .recommended-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .recommended-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .recommended-item:hover .recommended-img img {
+            transform: scale(1.1);
+        }
+        
+        .recommended-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .recommended-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .recommended-content .price {
+            font-weight: 700;
+            color: #e63946;
+            font-size: 1.3rem;
+            margin-top: auto;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: #e63946;
+            color: white;
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            color: #333;
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #e63946;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2b2d42;
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: #e63946;
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.5s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .close:hover {
+            color: #e63946;
+        }
+        
+        .modal-header {
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            color: #e63946;
+            margin-bottom: 10px;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .rating i {
+            color: #ffc107;
+            margin-right: 5px;
+        }
+        
+        .rating span {
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .combo-container {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    <h1>Krishi's Momos</h1>
+                </div>
+                <div class="tagline">Delicious Momos & More</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Delicious Momos & Indian Cuisine</h2>
+            <p>Taste the authentic flavors of momos and traditional Indian dishes at Krishi's Momos. We serve 12 varieties of delicious momos and more!</p>
+            <a href="#menu" class="btn">View Our Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Momos Menu</h2>
+                <p>12 delicious varieties of momos, all under ₹120</p>
+            </div>
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Combo Section -->
+    <section class="combo">
+        <div class="container">
+            <div class="combo-container">
+                <div class="combo-img">
+                    <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Chapathi and Dall">
+                </div>
+                <div class="combo-content">
+                    <h2>Chapathi & Dall Combo</h2>
+                    <p>Enjoy our soft chapathis served with delicious, freshly prepared dall. A perfect combination for a satisfying meal at an unbeatable price.</p>
+                    <div class="combo-price">Only ₹30</div>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Section -->
+    <section class="recommended">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recommended Dishes</h2>
+                <p>Try our chef's special recommendations</p>
+            </div>
+            <div class="recommended-grid" id="recommendedGrid">
+                <!-- Recommended items will be dynamically generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Contact Us</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-store"></i>
+                        <div>
+                            <h3>Krishi's Momos</h3>
+                            <p>Your favorite momos destination</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h3>Call Us</h3>
+                            <p>8882154017</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email Us</h3>
+                            <p>udhyakumarkanish@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="user_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="user_email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Krishi's Momos</div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Krishi's Momos. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Momo Details -->
+    <div id="momoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalMomoName"></h2>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span id="modalMomoRating"></span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p id="modalMomoDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+        // Initialize EmailJS with your public key
+        (function() {
+            emailjs.init("4iXzW_H6vIuaKk7Xc");
+        })();
+
+        // Momo data
+        const momosData = [
+            { id: 1, name: "Veg Momos", price: 80, type: "veg", image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" },
+            { id: 2, name: "Chicken Momos", price: 100, type: "non-veg", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" },
+            { id: 3, name: "Paneer Momos", price: 90, type: "veg", image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" },
+            { id: 4, name: "Mutton Momos", price: 110, type: "non-veg", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" },
+            { id: 5, name: "Corn Momos", price: 70, type: "veg", image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" },
+            { id: 6, name: "Fish Momos", price: 100, type: "non-veg", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" },
+            { id: 7, name: "Chocolate Momos", price: 60, type: "veg", image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" },
+            { id: 8, name: "Egg Momos", price: 80, type: "non-veg", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" },
+            { id: 9, name: "Mixed Veg Momos", price: 85, type: "veg", image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" },
+            { id: 10, name: "Tandoori Momos", price: 120, type: "non-veg", image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1173&q=80" },
+            { id: 11, name: "Cheese Momos", price: 95, type: "veg", image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" },
+            { id: 12, name: "Schezwan Momos", price: 90, type: "veg", image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" }
+        ];
+
+        // Generate random rating
+        function generateRandomRating() {
+            return (Math.random() * 2 + 3).toFixed(1); // Returns a rating between 3.0 and 5.0
+        }
+
+        // Render menu items
+        function renderMenuItems() {
+            const menuGrid = document.getElementById('menuGrid');
+            menuGrid.innerHTML = '';
+            
+            momosData.forEach(momo => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <div class="menu-img">
+                        <img src="${momo.image}" alt="${momo.name}">
+                    </div>
+                    <div class="menu-content">
+                        <h3>${momo.name}</h3>
+                        <span class="type ${momo.type}">${momo.type === 'veg' ? 'Vegetarian' : 'Non-Vegetarian'}</span>
+                        <div class="price">₹${momo.price}</div>
+                    </div>
+                `;
+                
+                menuItem.addEventListener('click', () => {
+                    showMomoDetails(momo);
+                });
+                
+                menuGrid.appendChild(menuItem);
+            });
+        }
+
+        // Render recommended items
+        function renderRecommendedItems() {
+            const recommendedGrid = document.getElementById('recommendedGrid');
+            recommendedGrid.innerHTML = '';
+            
+            // Chapathi and Dall
+            const chapathiDall = {
+                id: 13,
+                name: "Chapathi and Dall",
+                price: 30,
+                type: "veg",
+                image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+            };
+            
+            // Find one veg momo
+            const vegMomo = momosData.find(momo => momo.type === 'veg');
+            
+            // Find one non-veg momo
+            const nonVegMomo = momosData.find(momo => momo.type === 'non-veg');
+            
+            const recommendedItems = [chapathiDall, vegMomo, nonVegMomo];
+            
+            recommendedItems.forEach(item => {
+                const recommendedItem = document.createElement('div');
+                recommendedItem.className = 'recommended-item';
+                recommendedItem.innerHTML = `
+                    <div class="recommended-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="recommended-content">
+                        <h3>${item.name}</h3>
+                        <div class="price">₹${item.price}</div>
+                    </div>
+                `;
+                
+                recommendedItem.addEventListener('click', () => {
+                    showMomoDetails(item);
+                });
+                
+                recommendedGrid.appendChild(recommendedItem);
+            });
+        }
+
+        // Show momo details in modal
+        function showMomoDetails(momo) {
+            const modal = document.getElementById('momoModal');
+            const modalMomoName = document.getElementById('modalMomoName');
+            const modalMomoRating = document.getElementById('modalMomoRating');
+            const modalMomoDescription = document.getElementById('modalMomoDescription');
+            
+            modalMomoName.textContent = momo.name;
+            modalMomoRating.textContent = `${generateRandomRating()}/5`;
+            
+            // Set description based on momo type
+            if (momo.name === "Chapathi and Dall") {
+                modalMomoDescription.textContent = "Soft, fluffy chapathis served with our delicious, freshly prepared dall. A perfect combination for a satisfying meal.";
+            } else if (momo.type === 'veg') {
+                modalMomoDescription.textContent = `Delicious vegetarian ${momo.name.toLowerCase()} made with fresh ingredients and authentic spices.`;
+            } else {
+                modalMomoDescription.textContent = `Tasty non-vegetarian ${momo.name.toLowerCase()} made with premium quality meat and flavorful spices.`;
+            }
+            
+            modal.style.display = 'flex';
+        }
+
+        // Close modal
+        document.querySelector('.close').addEventListener('click', () => {
+            document.getElementById('momoModal').style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('momoModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Handle contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Send the email using EmailJS
+            emailjs.sendForm('service_6tw2oh1', 'template_4t7kwe8', this)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Your message has been sent successfully!');
+                    document.getElementById('contactForm').reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send your message. Please try again later.');
+                });
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenuItems();
+            renderRecommendedItems();
+        });
+    </script>
+</body>
+</html>
